@@ -7,7 +7,7 @@ networks:
 services:
   postgres:
     image: postgres:18.4-alpine3.24
-    container_name: postgres
+    container_name: postgres-pid
     ports:
       - "5432:5432"
     environment:
@@ -41,7 +41,7 @@ services:
       - KC_PROXY_HEADERS=forwarded
       - KC_HTTP_ENABLED=true
       - KC_HTTP_RELATIVE_PATH=/idp
-      - KC_HOSTNAME=https://localhost/idp
+      - KC_HOSTNAME=https://civica-desarrollo.avance.org.co/idp
       - KC_HOSTNAME_BACKCHANNEL_DYNAMIC=true
       - KC_HTTPS_CERTIFICATE_FILE=/etc/ssl/certs/keycloak.tls.crt
       - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/ssl/certs/keycloak.tls.key
@@ -84,8 +84,10 @@ services:
       - default
 
   pid-issuer:
-    image: ghcr.io/eu-digital-identity-wallet/eudi-srv-pid-issuer:edge
-    pull_policy: always
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: eudi-srv-pid-issuer:local
     container_name: pid-issuer
     depends_on:
       keycloak:
@@ -103,8 +105,8 @@ services:
       - SPRING_SECURITY_OAUTH2_RESOURCESERVER_OPAQUETOKEN_CLIENTID=pid-issuer-srv
       - SPRING_SECURITY_OAUTH2_RESOURCESERVER_OPAQUETOKEN_CLIENTSECRET=zIKAV9DIIIaJCzHCVBPlySgU8KgY68U2
       - SPRING_HTTP_CODECS_MAXINMEMORYSIZE=8MB
-      - ISSUER_PUBLICURL=https://localhost/pid-issuer
-      - ISSUER_AUTHORIZATIONSERVER_PUBLICURL=https://localhost/idp/realms/pid-issuer-realm
+      - ISSUER_PUBLICURL=https://civica-desarrollo.avance.org.co/pid-issuer
+      - ISSUER_AUTHORIZATIONSERVER_PUBLICURL=https://civica-desarrollo.avance.org.co/idp/realms/pid-issuer-realm
       - ISSUER_AUTHORIZATIONSERVER_INTROSPECTION=https://keycloak:8443/idp/realms/pid-issuer-realm/protocol/openid-connect/token/introspect
       - ISSUER_KEYSTORE_FILE=file:/issuer-keys.jks
       - ISSUER_KEYSTORE_TYPE=JKS
@@ -130,6 +132,8 @@ services:
       - ISSUER_KEYCLOAK_PASSWORD=password
       - ISSUER_KEYCLOAK_USER_REALM=pid-issuer-realm
       - ISSUER_DPOP_REALM=pid-issuer
+      - ISSUER_CREDENTIALOFFER_DEFAULTURI=openid-credential-offer://
+      - ISSUER_CREDENTIALOFFER_ALLOWEDSCHEMES=https,eu-eaa-offer,openid-credential-offer,haip-vci
       - SPRING_R2DBC_URL=r2dbc:pool:postgresql://postgres:5432/pid_issuer
       - SPRING_R2DBC_USERNAME=pid_issuer
       - SPRING_R2DBC_PASSWORD=pid_issuer

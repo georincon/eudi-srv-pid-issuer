@@ -32,7 +32,7 @@ services:
       args:
         VERSION: ${KEYCLOAK_ABCA_EXTENSION_VERSION}
     image: keycloak-abca:${KEYCLOAK_ABCA_EXTENSION_VERSION}
-    container_name: keycloak
+    container_name: keycloak-pid
     command:
       - start-dev
       - --import-realm
@@ -72,7 +72,7 @@ services:
       args:
         VERSION: ${STATUS_LIST_VERSION}
     image: status-list:${STATUS_LIST_VERSION}
-    container_name: status-list
+    container_name: status-list-pid
     environment:
       API_key: aaa-bbb-ccc
     volumes:
@@ -150,7 +150,7 @@ services:
 
   haproxy:
     image: haproxy:2.8.3
-    container_name: haproxy
+    container_name: haproxy-pid
     ports:
       - "443:443"
       - "80:80"

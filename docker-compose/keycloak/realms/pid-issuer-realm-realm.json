@@ -459,13 +459,13 @@
     "totpAppFreeOTPName",
     "totpAppGoogleName"
   ],
-  "webAuthnPolicyRpEntityName": "https://localhost/idp",
+  "webAuthnPolicyRpEntityName": "https://civica-desarrollo.avance.org.co/idp",
   "webAuthnPolicySignatureAlgorithms": [
     "ES256",
     "ES384",
     "ES512"
   ],
-  "webAuthnPolicyRpId": "localhost",
+  "webAuthnPolicyRpId": "civica-desarrollo.avance.org.co",
   "webAuthnPolicyAttestationConveyancePreference": "not specified",
   "webAuthnPolicyAuthenticatorAttachment": "not specified",
   "webAuthnPolicyRequireResidentKey": "not specified",
@@ -474,13 +474,13 @@
   "webAuthnPolicyAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyAcceptableAaguids": [],
   "webAuthnPolicyExtraOrigins": [],
-  "webAuthnPolicyPasswordlessRpEntityName": "https://localhost/idp",
+  "webAuthnPolicyPasswordlessRpEntityName": "https://civica-desarrollo.avance.org.co/idp",
   "webAuthnPolicyPasswordlessSignatureAlgorithms": [
     "ES256",
     "ES384",
     "ES512"
   ],
-  "webAuthnPolicyPasswordlessRpId": "localhost",
+  "webAuthnPolicyPasswordlessRpId": "civica-desarrollo.avance.org.co",
   "webAuthnPolicyPasswordlessAttestationConveyancePreference": "not specified",
   "webAuthnPolicyPasswordlessAuthenticatorAttachment": "not specified",
   "webAuthnPolicyPasswordlessRequireResidentKey": "not specified",
@@ -750,8 +750,8 @@
       "clientId": "pid-issuer-srv",
       "name": "PID Issuer service",
       "description": "",
-      "rootUrl": "http://localhost:8080",
-      "adminUrl": "http://localhost:8080",
+      "rootUrl": "https://civica-desarrollo.avance.org.co/pid-issuer",
+      "adminUrl": "https://civica-desarrollo.avance.org.co/pid-issuer",
       "baseUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
@@ -759,10 +759,10 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "zIKAV9DIIIaJCzHCVBPlySgU8KgY68U2",
       "redirectUris": [
-        "http://localhost:8080/*"
+        "https://civica-desarrollo.avance.org.co/pid-issuer/*"
       ],
       "webOrigins": [
-        "http://localhost:8080"
+        "https://civica-desarrollo.avance.org.co"
       ],
       "notBefore": 0,
       "bearerOnly": false,

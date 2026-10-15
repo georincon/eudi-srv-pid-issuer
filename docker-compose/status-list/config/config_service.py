@@ -22,7 +22,7 @@ from logging.handlers import TimedRotatingFileHandler
 
 class ConfService:
 
-    service_url = "https://civica-desarrollo.avance.org.co/"
+    service_url = "https://localhost/"
     # Token status list size (Bytes)
     token_status_list_size = 10000
 
